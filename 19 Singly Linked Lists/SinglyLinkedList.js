@@ -1,18 +1,11 @@
-// node contains pieceof data - 'val'
-// node contains reference to next node - 'next'
+// NODE contains pieceof data - 'val'
+// NODE contains reference to next node - 'next'
 class NODE {
   constructor(val) {
     this.val = val
     this.next = null
   }
 }
-
-// let first = new NODE('hi')
-// first.next = new NODE('there')
-// first.next.next = new NODE('how')
-// first.next.next.next = new NODE('are')
-// first.next.next.next.next = new NODE('you')
-// console.log(first.next.next.next.next)
 
 class SinglyLinkedList {
   constructor() {
@@ -61,7 +54,6 @@ class SinglyLinkedList {
 
     this.tail = newTail
     this.tail.next = null
-
     this.lenght--
 
     if (this.lenght === 0) {
@@ -71,6 +63,22 @@ class SinglyLinkedList {
 
     return current
   }
+
+  shift() {
+    if (!this.head) {
+      return undefined
+    }
+
+    let currentHead = this.head
+    this.head = currentHead.next
+    this.lenght--
+
+    if (this.lenght === 0) {
+      this.tail = null
+    }
+
+    return currentHead
+  }
 }
 
 const sll = new SinglyLinkedList()
@@ -78,8 +86,3 @@ sll.push('HI')
 sll.push('HOW')
 sll.push('ARE')
 sll.push('YOU')
-sll.pop()
-sll.pop()
-sll.pop()
-sll.pop()
-sll.pop()
