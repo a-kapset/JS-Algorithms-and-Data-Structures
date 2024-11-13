@@ -36,14 +36,50 @@ class SinglyLinkedList {
 
     return this
   }
+
+  traverse() {
+    let current = this.head
+
+    while (current) {
+      console.log(current)
+      current = current.next
+    }
+  }
+
+  pop() {
+    if (!this.head) {
+      return undefined
+    }
+
+    let current = this.head
+    let newTail = current
+
+    while (current.next) {
+      newTail = current
+      current = current.next
+    }
+
+    this.tail = newTail
+    this.tail.next = null
+
+    this.lenght--
+
+    if (this.lenght === 0) {
+      this.head = null
+      this.tail = null
+    }
+
+    return current
+  }
 }
 
 const sll = new SinglyLinkedList()
-console.log('>>> ', sll)
 sll.push('HI')
-console.log('>>> ', sll)
 sll.push('HOW')
-console.log('>>> ', sll)
 sll.push('ARE')
-console.log('>>> ', sll)
 sll.push('YOU')
+sll.pop()
+sll.pop()
+sll.pop()
+sll.pop()
+sll.pop()
