@@ -101,19 +101,15 @@ class SinglyLinkedList {
       return null
     }
 
-    if (this.lenght === 0) {
-      return null
-    }
-
     let counter = 0
     let currentNode = this.head
 
-    while (counter != index) {
+    while (counter !== index) {
       currentNode = currentNode.next
       counter++
     }
 
-    return currentNode.val
+    return currentNode
   }
 }
 
