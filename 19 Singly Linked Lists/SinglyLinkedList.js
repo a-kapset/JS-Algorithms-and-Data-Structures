@@ -111,6 +111,17 @@ class SinglyLinkedList {
 
     return currentNode
   }
+
+  set(index, value) {
+    let foundNode = this.get(index)
+
+    if (foundNode) {
+      foundNode.val = value
+      return true
+    } else {
+      return false
+    }
+  }
 }
 
 const sll = new SinglyLinkedList()
