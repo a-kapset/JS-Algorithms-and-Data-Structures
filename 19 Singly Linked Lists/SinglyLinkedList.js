@@ -30,19 +30,8 @@ class SinglyLinkedList {
     return this
   }
 
-  traverse() {
-    let current = this.head
-
-    while (current) {
-      console.log(current)
-      current = current.next
-    }
-  }
-
   pop() {
-    if (!this.head) {
-      return undefined
-    }
+    if (!this.head) return undefined
 
     let current = this.head
     let newTail = current
@@ -65,9 +54,7 @@ class SinglyLinkedList {
   }
 
   shift() {
-    if (!this.head) {
-      return undefined
-    }
+    if (!this.head) return undefined
 
     let currentHead = this.head
     this.head = currentHead.next
@@ -97,9 +84,7 @@ class SinglyLinkedList {
   }
 
   get(index) {
-    if (index < 0 || index >= this.lenght) {
-      return null
-    }
+    if (index < 0 || index >= this.lenght) return null
 
     let counter = 0
     let currentNode = this.head
@@ -121,6 +106,21 @@ class SinglyLinkedList {
     } else {
       return false
     }
+  }
+
+  insert(index, value) {
+    if (index < 0 || index > this.lenght) return false
+    if (index === 0) return !!this.unshift(value)
+    if (index === this.lenght) return !!this.push(value)
+
+    let prevNode = this.get(index - 1)
+    let tempNext = prevNode.next
+    let newNode = new NODE(value)
+    prevNode.next = newNode
+    newNode.next = tempNext
+    this.lenght++
+
+    return true
   }
 }
 
