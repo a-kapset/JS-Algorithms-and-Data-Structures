@@ -1,4 +1,4 @@
-// NODE contains pieceof data - 'val'
+// NODE contains piece of data - 'val'
 // NODE contains reference to next node - 'next'
 class NODE {
   constructor(val) {
@@ -121,6 +121,19 @@ class SinglyLinkedList {
     this.lenght++
 
     return true
+  }
+
+  remove(index) {
+    if (index < 0 || index >= this.lenght) return undefined
+    if (index === 0) return this.shift(index)
+    if (index === this.lenght - 1) return this.pop(index)
+
+    let prevNode = this.get(index - 1)
+    let removedNode = prevNode.next
+    prevNode.next = removedNode.next
+    this.lenght--
+
+    return removedNode
   }
 }
 
