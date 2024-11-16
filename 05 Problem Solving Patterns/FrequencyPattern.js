@@ -43,19 +43,17 @@ function isValidAnagram(str1, str2) {
   if (str1.length != str2.length) return false
 
   const firstStringStorage = {}
-  const secondStringStorage = {}
 
   for (const s of str1) {
     firstStringStorage[s] = (firstStringStorage[s] || 0) + 1
   }
 
   for (const s of str2) {
-    secondStringStorage[s] = (secondStringStorage[s] || 0) + 1
-  }
-
-  for (const key in firstStringStorage) {
-    if (!(key in secondStringStorage)) return false
-    if (firstStringStorage[key] !== secondStringStorage[key]) return false
+    if (firstStringStorage[s]) {
+      firstStringStorage[s]--
+    } else {
+      return false
+    }
   }
 
   return true
