@@ -60,11 +60,3 @@ function isValidAnagram(str1, str2) {
 
   return true
 }
-
-console.log(isValidAnagram('', ''))
-console.log(isValidAnagram('aaz', 'zza'))
-console.log(isValidAnagram('anagram', 'nagaram'))
-console.log(isValidAnagram('rat', 'car'))
-console.log(isValidAnagram('awesome', 'awesom'))
-console.log(isValidAnagram('qwerty', 'qeywrt'))
-console.log(isValidAnagram('texttwisttime', 'timetwisttext'))
