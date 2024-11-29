@@ -11,7 +11,7 @@ class SinglyLinkedList {
   constructor() {
     this.head = null
     this.tail = null
-    this.lenght = 0
+    this.length = 0
   }
 
   push(val) {
@@ -25,7 +25,7 @@ class SinglyLinkedList {
       this.tail = newNode
     }
 
-    this.lenght++
+    this.length++
 
     return this
   }
@@ -43,9 +43,9 @@ class SinglyLinkedList {
 
     this.tail = newTail
     this.tail.next = null
-    this.lenght--
+    this.length--
 
-    if (this.lenght === 0) {
+    if (this.length === 0) {
       this.head = null
       this.tail = null
     }
@@ -58,9 +58,9 @@ class SinglyLinkedList {
 
     let currentHead = this.head
     this.head = currentHead.next
-    this.lenght--
+    this.length--
 
-    if (this.lenght === 0) {
+    if (this.length === 0) {
       this.tail = null
     }
 
@@ -78,13 +78,13 @@ class SinglyLinkedList {
       this.head = newNode
     }
 
-    this.lenght++
+    this.length++
 
     return this
   }
 
   get(index) {
-    if (index < 0 || index >= this.lenght) return null
+    if (index < 0 || index >= this.length) return null
 
     let counter = 0
     let currentNode = this.head
@@ -109,29 +109,29 @@ class SinglyLinkedList {
   }
 
   insert(index, value) {
-    if (index < 0 || index > this.lenght) return false
+    if (index < 0 || index > this.length) return false
     if (index === 0) return !!this.unshift(value)
-    if (index === this.lenght) return !!this.push(value)
+    if (index === this.length) return !!this.push(value)
 
     let prevNode = this.get(index - 1)
     let tempNext = prevNode.next
     let newNode = new NODE(value)
     prevNode.next = newNode
     newNode.next = tempNext
-    this.lenght++
+    this.length++
 
     return true
   }
 
   remove(index) {
-    if (index < 0 || index >= this.lenght) return undefined
+    if (index < 0 || index >= this.length) return undefined
     if (index === 0) return this.shift(index)
-    if (index === this.lenght - 1) return this.pop(index)
+    if (index === this.length - 1) return this.pop(index)
 
     let prevNode = this.get(index - 1)
     let removedNode = prevNode.next
     prevNode.next = removedNode.next
-    this.lenght--
+    this.length--
 
     return removedNode
   }
