@@ -84,11 +84,51 @@ class DoublyLinkedLists {
 
     return this
   }
+
+  get(index) {
+    if (index < 0 || index >= this.length) return null
+
+    let count, current
+    if (index <= this.length / 2) {
+      count = 0
+      current = this.head
+
+      while (count !== index) {
+        current = current.next
+        count++
+      }
+    } else {
+      count = this.length - 1
+      current = this.tail
+
+      while (count !== index) {
+        current = current.prev
+        count--
+      }
+    }
+
+    return current
+  }
+
+  set(index, value) {
+    const setNode = this.get(index)
+
+    if (setNode) {
+      setNode.val = value
+      return true
+    } else {
+      return false
+    }
+  }
 }
 
 const dll = new DoublyLinkedLists()
-dll.push(1)
-dll.push(2)
-dll.push(3)
+dll.push('A')
+dll.push('B')
+dll.push('C')
+dll.push('D')
+dll.push('E')
 
-console.log(dll.unshift(0))
+console.log(dll.set(2, 'X'))
+console.log(dll.set(-1, 'X'))
+console.log(dll.set(dll.length, 'X'))
