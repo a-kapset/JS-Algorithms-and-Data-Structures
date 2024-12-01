@@ -48,9 +48,47 @@ class DoublyLinkedLists {
 
     return poppedNode
   }
+
+  shift() {
+    if (this.length === 0) return undefined
+
+    const shiftedNode = this.head
+
+    if (this.length === 1) {
+      this.head = null
+      this.tail = null
+    } else {
+      this.head = shiftedNode.next
+      this.head.prev = null
+      shiftedNode.next = null
+    }
+
+    this.length--
+
+    return shiftedNode
+  }
+
+  unshift(val) {
+    const newNode = new NODE(val)
+
+    if (this.length === 0) {
+      this.head = newNode
+      this.tail = newNode
+    } else {
+      this.head.prev = newNode
+      newNode.next = this.head
+      this.head = newNode
+    }
+
+    this.length++
+
+    return this
+  }
 }
 
 const dll = new DoublyLinkedLists()
 dll.push(1)
 dll.push(2)
 dll.push(3)
+
+console.log(dll.unshift(0))
