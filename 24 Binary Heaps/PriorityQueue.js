@@ -1,21 +1,24 @@
-/**
-in MaxBinaryHeap:
-1) parent is always greater then its children
-2) each child has index '2n + 1' or '2n + 2', where n is parent's index
- */
+class NODE {
+  constructor(val, priority) {
+    this.val = val
+    this.priority = priority
+  }
+}
 
-class MaxBinaryHeap {
+class PriorityQueue {
   constructor() {
     this.values = []
   }
 
-  insert(value) {
-    this.values.push(value)
+  enqueue(val, priority) {
+    const newNode = new NODE(val, priority)
+    this.values.push(newNode)
+
     this._bubbleUp()
   }
 
-  extractMax() {
-    const max = this.values[0]
+  dequeue() {
+    const min = this.values[0]
     const end = this.values.pop()
 
     if (this.values.length > 0) {
@@ -23,7 +26,7 @@ class MaxBinaryHeap {
       this._bubbleDown()
     }
 
-    return max
+    return min
   }
 
   _bubbleUp() {
@@ -33,7 +36,7 @@ class MaxBinaryHeap {
     while (index > 0) {
       let parentIndex = Math.floor((index - 1) / 2)
       let parent = this.values[parentIndex]
-      if (elementToBubbleUp <= parent) break
+      if (elementToBubbleUp.priority >= parent.priority) break
       this.values[parentIndex] = elementToBubbleUp
       this.values[index] = parent
       index = parentIndex
@@ -53,12 +56,15 @@ class MaxBinaryHeap {
 
       if (leftChildIndex < length) {
         leftChild = this.values[leftChildIndex]
-        if (leftChild > element) toSwap = leftChildIndex
+        if (leftChild.priority < element.priority) toSwap = leftChildIndex
       }
 
       if (rightChildIndex < length) {
         rightChild = this.values[rightChildIndex]
-        if ((toSwap === null && rightChild > element) || (toSwap !== null && rightChild > leftChild))
+        if (
+          (toSwap === null && rightChild.priority < element.priority) ||
+          (toSwap !== null && rightChild.priority < leftChild.priority)
+        )
           toSwap = rightChildIndex
       }
 
@@ -71,14 +77,11 @@ class MaxBinaryHeap {
   }
 }
 
-const maxbh = new MaxBinaryHeap()
-// [55 39 41 18 27 12 33]
-//  0  1  2  3  4  5  6
+const pq = new PriorityQueue()
 
-maxbh.insert(41)
-maxbh.insert(39)
-maxbh.insert(33)
-maxbh.insert(18)
-maxbh.insert(27)
-maxbh.insert(12)
-maxbh.insert(55)
+pq.enqueue('a', 1)
+pq.enqueue('b', 2)
+pq.enqueue('c', 3)
+pq.enqueue('e', 1)
+
+console.log(pq)
